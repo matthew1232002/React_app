@@ -1,34 +1,30 @@
+import React, { useState } from 'react';
 import clsx from 'clsx';
-import { useState } from 'react';
 import { CenteredLayout } from '~/components';
 
-// TODO is there a way to not write this twice? =\
-type ButtonType = 'fast' | 'quality' | 'cheap';
-
-const buttons: ButtonType[] = ['fast', 'quality', 'cheap'];
+const buttons = ['fast', 'quality', 'cheap'] as const;
+type ButtonType = typeof buttons[number];
 
 interface ButtonProps {
   button: ButtonType;
-  selectedButton: ButtonType | null;
   setSelectedButton: (value: ButtonType) => void;
+  isActive: boolean;
 }
 
-// TODO is it possible to improve this component's interface (props)?
-const Button = ({ button, selectedButton, setSelectedButton }: ButtonProps) => {
-  const style = button === selectedButton;
+const Button: React.FC<ButtonProps> = React.memo(({ button, setSelectedButton, isActive }) => {
   return (
     <button
       key={button}
       onClick={() => setSelectedButton(button)}
       className={clsx(
         'h-10 px-5 flex items-center justify-center rounded transition-colors',
-        style ? 'bg-green-400' : 'bg-gray-300',
+        isActive ? 'bg-green-400' : 'bg-gray-300',
       )}
     >
       {button}
     </button>
   );
-};
+}, (prevProps, nextProps) => !(prevProps.isActive !== nextProps.isActive));
 
 export const Refactor1 = () => {
   const [selectedButton, setSelectedButton] = useState<ButtonType | null>(null);
@@ -38,10 +34,10 @@ export const Refactor1 = () => {
       <div className="grid grid-cols-3 gap-2 w-60">
         {buttons.map((button) => (
           <Button
-            key={button}
+            key={`list-btn-${button}`}
             button={button}
-            selectedButton={selectedButton}
             setSelectedButton={setSelectedButton}
+            isActive={button === selectedButton}
           />
         ))}
       </div>
