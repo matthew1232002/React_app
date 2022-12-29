@@ -24,7 +24,7 @@ const Button: React.FC<ButtonProps> = React.memo(({ button, setSelectedButton, i
       {button}
     </button>
   );
-}, (prevProps, nextProps) => !(prevProps.isActive !== nextProps.isActive));
+});
 
 export const Refactor1 = () => {
   const [selectedButton, setSelectedButton] = useState<ButtonType | null>(null);

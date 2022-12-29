@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from 'react';
+import React, { memo, useState } from 'react';
 import { CenteredLayout } from '~/components';
 import { useRenderHighlight } from '~/utils';
 import css from './optimize-1.module.scss';
@@ -9,32 +9,27 @@ const todosData = [
   { id: 3, text: 'swim with a fish', done: false },
 ];
 
-// TODO Fix all list re-rendering when only one component is changed :(
-
 interface TodoProps {
   text: string;
   done: boolean;
   onClick: () => void;
 }
 
-const Todo = memo(({ text, done, onClick }: TodoProps) => {
+const Todo: React.FC<TodoProps>= memo(({ text, done, onClick }) => {
   const ref = useRenderHighlight(css.render);
   return (
     <li ref={ref} onClick={onClick} className={css.listItem}>
       {done ? '[x]' : '[ ]'} {text}
     </li>
   );
-});
+}, (prevProps, nextProps) => prevProps.done === nextProps.done);
 
 export const Optimize1 = () => {
   const [todos, setTodos] = useState(todosData);
 
-  const handleTodoClick = useCallback(
-    (id: number) => {
-      setTodos(todos.map((todo) => (todo.id === id ? { ...todo, done: !todo.done } : todo)));
-    },
-    [todos],
-  );
+  const handleTodoClick = (id: number) => {
+      setTodos((prevState) => prevState.map((todo) => (todo.id === id ? { ...todo, done: !todo.done } : todo)));
+    }
 
   return (
     <CenteredLayout className="gap-4">
@@ -43,7 +38,7 @@ export const Optimize1 = () => {
       <ul>
         {todos.map((item) => (
           <Todo
-            key={item.id}
+            key={`todo-item-${item.id}`}
             text={item.text}
             done={item.done}
             onClick={() => handleTodoClick(item.id)}
