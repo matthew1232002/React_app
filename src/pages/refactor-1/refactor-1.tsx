@@ -32,9 +32,9 @@ export const Refactor1 = () => {
     <CenteredLayout className="gap-4">
       <div className="text-3xl">See the code</div>
       <div className="grid grid-cols-3 gap-2 w-60">
-        {buttons.map((button) => (
+        {buttons.map((button, index) => (
           <Button
-            key={`list-btn-${button}`}
+            key={`list-btn-${index}`}
             button={button}
             setSelectedButton={setSelectedButton}
             isActive={button === selectedButton}

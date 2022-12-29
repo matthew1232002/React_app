@@ -1,4 +1,5 @@
 import { CenteredLayout } from '~/components';
+import React from 'react';
 
 // TODO refactor
 
@@ -16,7 +17,7 @@ const QnA: QuestionOrAnswer[] = [
   { answer: 'Do I look like a counter?' },
 ];
 
-const QnaRender = ({ question, answer }: QuestionOrAnswer) => {
+const QnaRender: React.FC<QuestionOrAnswer> = ({ question, answer }) => {
   if (question) {
     return <h3 className="font-bold text-lg">{question}</h3>;
   } else {
@@ -29,7 +30,7 @@ export const Refactor2 = () => {
     <CenteredLayout className="gap-2">
       <div className="text-3xl mb-2">See the code</div>
       {QnA.map((item, index) => (
-        <QnaRender key={index} {...item} />
+        <QnaRender key={`list-item-${index}`} {...item} />
       ))}
     </CenteredLayout>
   );
