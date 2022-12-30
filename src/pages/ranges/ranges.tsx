@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 import untypedItems from './items.json';
 import untypedRanges from './ranges.json';
-import { colorToClassName, dataSample, Item, Range } from './utils';
+import { colorToClassName, dataSample, Range } from './utils';
+import { Item } from '~/types';
 
 const items = untypedItems as Item[];
 const ranges = untypedRanges as Range[];
