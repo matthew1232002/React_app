@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CenteredLayout } from '~/components';
-
-// TODO how can we optimize, prevent re-rendering ExpensiveComponent
-// by changing component structure ?
+import _ from 'lodash';
 
 const ExpensiveComponent = () => {
   const now = performance.now();
@@ -17,10 +15,11 @@ export const Optimize2 = () => {
     const handleScroll = () => {
       setScrollTop(window.scrollY);
     };
+    const throttledScroll = _.throttle(handleScroll, 200);
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', throttledScroll, { passive: true });
     return () => {
-      window.addEventListener('scroll', handleScroll);
+      window.addEventListener('scroll', throttledScroll);
     };
   }, []);
 
