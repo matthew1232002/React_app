@@ -22,9 +22,7 @@ export interface Range {
   color: ColorsType;
 }
 
-
-// TODO could we type this stronger, so autocomplete by key works?
-export const colorToClassName: Record<string, string> = {
+export const colorToClassName: Record<ColorsType, string> = {
   red: 'bg-red-300 text-red-900',
   green: 'bg-green-300 text-green-900',
   blue: 'bg-blue-300 text-blue-900',

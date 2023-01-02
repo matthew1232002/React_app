@@ -1,0 +1,57 @@
+@import "src/pages/annotations/variables";
+.annotation {
+  position: relative;
+  align-items: center;
+  display: flex;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #EFEFF0;
+  background: $white;
+}
+
+.annotation:after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  margin-left: -10px;
+  width: 0;
+  height: 0;
+  border-left: solid 10px transparent;
+  border-right: solid 10px transparent;
+  border-bottom: solid 10px $white;
+}
+
+.annotation img {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
+}
+
+.initials {
+  flex: 0 0 32px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  background-color: #DB7474;
+  font-size: 14px;
+  color: #FDD5D5;
+  line-height: 16px;
+}
+
+.text {
+  overflow: hidden;
+  margin-left: 8px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #4A4A4A;
+  font-size: 14px;
+}
+
+.text p {
+  font-weight: 700;
+}

@@ -1,0 +1,15 @@
+.wrapper {
+  position: absolute;
+}
+
+.dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  background-color: #EF7058;
+  cursor: pointer;
+  filter: drop-shadow(0px 2px 6px rgba(69, 69, 69, 0.5));
+  text-align: center;
+  line-height: 32px;
+}

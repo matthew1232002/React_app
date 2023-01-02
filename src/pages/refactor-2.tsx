@@ -20,9 +20,8 @@ const QnA: QuestionOrAnswer[] = [
 const QnaRender: React.FC<QuestionOrAnswer> = ({ question, answer }) => {
   if (question) {
     return <h3 className="font-bold text-lg">{question}</h3>;
-  } else {
-    return <p className="mb-2">{answer}</p>;
   }
+  return <p className="mb-2">{answer}</p>;
 };
 
 export const Refactor2 = () => {

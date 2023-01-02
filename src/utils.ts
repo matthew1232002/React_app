@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { ColorsType, Item } from '~/types';
 
 export const useRenderHighlight = (className: string) => {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLLIElement>(null);
 
   if (ref.current) {
     ref.current.classList.add(className);
