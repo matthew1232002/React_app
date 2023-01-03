@@ -2,16 +2,18 @@ import React, { FormEvent, useRef } from 'react';
 import css from './form.module.scss';
 import sendIcon from '~/assets/images/send_icon.svg';
 import Card from '~/pages/annotations/components/Card/Card';
-import { CARD_WIDTH } from '~/pages/annotations/constants';
 import { FormProps } from '~/pages/annotations/types';
 import { useAnnotations } from '~/pages/annotations/hooks/useAnnotations';
+import { useMediaQuery } from 'react-responsive';
 
 const Form: React.FC<FormProps> = ({anchorEl, setIsFormOpen, containerEl}) => {
   const {create} = useAnnotations();
   const inputRef = useRef<HTMLInputElement>(null);
+  const isSmallScreen = useMediaQuery({ query: '(max-width: 500px)' })
+  const cardWidth = isSmallScreen ? 180 : 316
   const styles = {
     top: anchorEl.top + 'px',
-    left: anchorEl.left - CARD_WIDTH / 2 + 'px',
+    left: anchorEl.left - cardWidth / 2 + 'px',
     pointerEvents: 'none'
   }
 

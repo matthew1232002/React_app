@@ -22,14 +22,6 @@
   border-bottom: solid 10px $white;
 }
 
-.annotation img {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  cursor: pointer;
-  pointer-events: all;
-}
-
 .initials {
   flex: 0 0 32px;
   align-items: center;
@@ -46,6 +38,7 @@
 
 .text {
   overflow: hidden;
+  width: 100%;
   margin-left: 8px;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -53,6 +46,19 @@
   font-size: 14px;
 }
 
+.text img{
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.text div {
+  justify-content: space-between;
+  flex: 1;
+  display: flex;
+}
+
 .text p {
+  width: 95px;
+
   font-weight: 700;
 }

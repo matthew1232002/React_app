@@ -17,14 +17,16 @@ const Annotation: React.FC<AnnotationProps> = ({ top, left, annotation }) => {
   }
 
   return (
-    <Card styles={{top, left}} setIsShow={setIsShow}>
+    <Card styles={{top, left}} setIsShow={setIsShow} id={annotation.id}>
       {isShow && <div className={css.annotation}>
         <div className={css.initials}>{initials}</div>
         <div className={css.text}>
-          <p>{annotation.author}</p>
+          <div>
+            <p>{annotation.author}</p>
+            <img src={deleteIcon} onClick={(e) => onRemoveHandler(e, annotation.id)}/>
+          </div>
           <span>{annotation.comment}</span>
         </div>
-        <img src={deleteIcon} onClick={(e) => onRemoveHandler(e, annotation.id)}/>
       </div>}
     </Card>
   );

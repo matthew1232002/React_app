@@ -7,7 +7,7 @@ import { useAnnotations } from '~/pages/annotations/hooks/useAnnotations';
 import { AnnotationResponse } from '~/pages/annotations/types';
 import Form from '~/pages/annotations/components/Form/Form';
 import Annotation from '~/pages/annotations/components/Annotation/Annotation';
-import { CARD_WIDTH } from '~/pages/annotations/constants';
+import { useMediaQuery } from 'react-responsive';
 
 export const Annotations: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<File>();
@@ -15,6 +15,8 @@ export const Annotations: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<{top: number, left: number}>({top: 0, left: 0});
   const [containerEl, setContainerEl] = useState<{width: number, height: number}>({width: 0, height: 0});
   const {fetch, data} = useAnnotations();
+  const isSmallScreen = useMediaQuery({ query: '(max-width: 500px)' })
+  const cardWidth = isSmallScreen ? 180 : 316
 
   const calculateContainerCord = () => {
       const elem: HTMLElement =  document.getElementById('annotations-container')!;
@@ -46,7 +48,7 @@ export const Annotations: React.FC = () => {
   };
 
   return (
-    <div className={css.main}>
+    <div className={css.main} onClick={() => setIsFormOpen(false)}>
       <div className={css.wrapper}>
         <div className={css.title}>
           <h1>{selectedImage ? selectedImage.name : 'Here goes the file name'}</h1>
@@ -60,14 +62,14 @@ export const Annotations: React.FC = () => {
           />
         </div>
 
-        <div className={css.image} onClick={() => setIsFormOpen(false)}>
+        <div className={css.image}>
           <div className={css.imageContainer} onClick={handleAddAnnotation} id='annotations-container'>
             {selectedImage ? (
               <img alt='image' src={URL.createObjectURL(selectedImage)}/>
             ) : <img alt='image' src={defaultImage} onLoad={handleLoad}/>}
 
             {data.map((annotation: AnnotationResponse) => {
-              const left = Math.round(annotation.pos.x * containerEl.width - CARD_WIDTH / 2) + 'px'
+              const left = Math.round(annotation.pos.x * containerEl.width - cardWidth / 2) + 'px'
               const top = Math.round(annotation.pos.y * containerEl.height) + 'px'
               return (
                 <Annotation key={annotation.id} top={top} left={left} annotation={annotation} />
