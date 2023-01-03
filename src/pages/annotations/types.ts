@@ -1,13 +1,20 @@
 import { ReactNode } from 'react';
 
-export interface AnnotationResponse {
-  id: number;
+export interface CreateAnnotation {
   author: string;
   comment: string;
   pos: {
     x: number;
     y: number;
   }
+}
+
+export interface AnnotationResponse extends CreateAnnotation{
+  id: number;
+}
+
+export interface AnnotationDeleteResponse {
+  id: number;
 }
 
 export interface FormProps {
