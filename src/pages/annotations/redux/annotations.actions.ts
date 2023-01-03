@@ -12,3 +12,23 @@ export const annotationsFetch = createAsyncThunk<AnnotationResponse[]>('annotati
     return rejectWithValue((err as AxiosError));
   }
 });
+
+export const annotationCreate = createAsyncThunk<any, any>('annotations/post', async (payload, {rejectWithValue}) => {
+  try {
+    const { data } = await api.post(`annotations`, payload);
+
+    return data;
+  } catch (err) {
+    return rejectWithValue((err as AxiosError));
+  }
+});
+
+export const annotationDelete = createAsyncThunk<any, number>('annotations/delete', async (payload, {rejectWithValue}) => {
+  try {
+    const { data } = await api.delete(`annotations/${payload}`);
+
+    return {id: payload};
+  } catch (err) {
+    return rejectWithValue((err as AxiosError));
+  }
+});

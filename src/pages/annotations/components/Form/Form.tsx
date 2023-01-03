@@ -4,8 +4,10 @@ import sendIcon from '~/assets/images/send_icon.svg';
 import Card from '~/pages/annotations/components/Card/Card';
 import { CARD_WIDTH } from '~/pages/annotations/constants';
 import { FormProps } from '~/pages/annotations/types';
+import { useAnnotations } from '~/pages/annotations/hooks/useAnnotations';
 
-const Form: React.FC<FormProps> = ({anchorEl, setIsFormOpen}) => {
+const Form: React.FC<FormProps> = ({anchorEl, setIsFormOpen, containerEl}) => {
+  const {create} = useAnnotations();
   const inputRef = useRef<HTMLInputElement>(null);
   const styles = {
     top: anchorEl.top + 'px',
@@ -16,8 +18,19 @@ const Form: React.FC<FormProps> = ({anchorEl, setIsFormOpen}) => {
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const value = inputRef.current!.value.trim();
+    const x = (anchorEl.left / containerEl.width).toFixed(4);
+    const y = (anchorEl.top / containerEl.height).toFixed(4)
+    const data = {
+      author: 'Matvey Lazarev',
+      comment: value,
+      pos: {
+        x,
+        y,
+      }
+    }
     if (value) {
       setIsFormOpen(false);
+      create(data);
     }
   }
 

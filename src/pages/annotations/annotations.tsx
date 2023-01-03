@@ -74,7 +74,7 @@ export const Annotations: React.FC = () => {
             )
             })}
 
-            {isFormOpen && <Form anchorEl={anchorEl} setIsFormOpen={setIsFormOpen}/>}
+            {isFormOpen && <Form anchorEl={anchorEl} containerEl={containerEl} setIsFormOpen={setIsFormOpen}/>}
           </div>
         </div>
 

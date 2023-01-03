@@ -14,6 +14,10 @@ export interface FormProps {
   anchorEl: {
     top: number;
     left: number;
+  },
+  containerEl: {
+    width: number;
+    height: number;
   }
   setIsFormOpen: (state: boolean) => void
 }
