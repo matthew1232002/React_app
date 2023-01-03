@@ -12,42 +12,65 @@ const Welcome = () => (
   </CenteredLayout>
 );
 
+const Wrapper = () => (
+ <>
+   <Outlet />
+ </>
+);
+
+const WrapperWithHeader = () => (
+  <>
+    <Header />
+    <Outlet />
+  </>
+);
+
 const reactLocation = new ReactLocation();
 
 const routes: Route[] = [
   {
-    path: '/',
-    element: <Welcome />,
-  },
-  {
-    path: 'refactor-1',
-    element: <Refactor1 />,
-  },
-  {
-    path: 'refactor-2',
-    element: <Refactor2 />,
-  },
-  {
-    path: 'optimize-1',
-    element: <Optimize1 />,
-  },
-  {
-    path: 'optimize-2',
-    element: <Optimize2 />,
-  },
-  {
-    path: 'ranges',
-    element: <Ranges />,
-  },
-  {
-    path: 'annotations',
-    element: <Annotations />,
+    element: <Wrapper />,
+    children: [
+      {
+        path: 'annotations',
+        element: <Annotations />,
+      },
+      {
+        element: <WrapperWithHeader />,
+        children: [
+          {
+            path: '/',
+            element: <Welcome />,
+          },
+          {
+            path: 'refactor-1',
+            element: <Refactor1 />,
+          },
+          {
+            path: 'refactor-2',
+            element: <Refactor2 />,
+          },
+          {
+            path: 'optimize-1',
+            element: <Optimize1 />,
+          },
+          {
+            path: 'optimize-2',
+            element: <Optimize2 />,
+          },
+          {
+            path: 'ranges',
+            element: <Ranges />,
+          },
+        ]
+      },
+
+      ]
   },
 ];
 
 export const App = () => (
   <Router location={reactLocation} routes={routes}>
-    <Header />
     <Outlet />
   </Router>
 );
