@@ -21,7 +21,7 @@ const Form: React.FC<FormProps> = ({anchorEl, setIsFormOpen, containerEl}) => {
   const cardWidth = isSmallScreen ? SMALL_CARD : BIG_CARD
   const styles = {
     top: anchorEl.top - DOT_SIZE / 2 + 'px',
-    left: anchorEl.left - cardWidth / 2 + 'px',
+    left: anchorEl.left - DOT_SIZE / 2 + 'px',
     pointerEvents: 'none'
   }
 
@@ -52,6 +52,7 @@ const Form: React.FC<FormProps> = ({anchorEl, setIsFormOpen, containerEl}) => {
         >
           <div {...getArrowProps({ className: 'tooltip-arrow' })} />
           <form
+            style={{width: cardWidth + 'px'}}
             onSubmit={onSubmitHandler}
             className={css.form}
             onClick={(e) => e.stopPropagation()}>

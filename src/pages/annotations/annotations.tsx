@@ -8,7 +8,7 @@ import { AnnotationResponse } from '~/pages/annotations/types';
 import Form from '~/pages/annotations/components/Form/Form';
 import Annotation from '~/pages/annotations/components/Annotation/Annotation';
 import { useMediaQuery } from 'react-responsive';
-import { DOT_SIZE } from '~/pages/annotations/constants';
+import { BIG_CARD, DOT_SIZE, SMALL_CARD } from '~/pages/annotations/constants';
 
 export const Annotations: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<File>();
@@ -17,7 +17,7 @@ export const Annotations: React.FC = () => {
   const [containerEl, setContainerEl] = useState<{width: number, height: number}>({width: 0, height: 0});
   const {fetch, data} = useAnnotations();
   const isSmallScreen = useMediaQuery({ query: '(max-width: 500px)' })
-  const cardWidth = isSmallScreen ? 180 : 316
+  const cardWidth = isSmallScreen ? SMALL_CARD : BIG_CARD
 
   const calculateContainerCord = () => {
       const elem: HTMLElement =  document.getElementById('annotations-container')!;
@@ -70,7 +70,7 @@ export const Annotations: React.FC = () => {
             ) : <img alt='image' src={defaultImage} onLoad={handleLoad}/>}
 
             {data.map((annotation: AnnotationResponse) => {
-              const left = Math.round(annotation.pos.x * containerEl.width - cardWidth / 2) + 'px'
+              const left = Math.round(annotation.pos.x * containerEl.width - DOT_SIZE / 2) + 'px'
               const top = Math.round(annotation.pos.y * containerEl.height) - DOT_SIZE / 2 + 'px'
               return (
                 <Annotation key={annotation.id} top={top} left={left} annotation={annotation} />
