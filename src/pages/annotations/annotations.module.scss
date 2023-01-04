@@ -17,22 +17,16 @@
 }
 
 .title {
+  flex-wrap: wrap;
+  gap: 12px;
   justify-content: space-between;
   display: flex;
   margin: 32px 0;
-
-  @media screen and (max-width: 500px) {
-    display: block;
-  }
 }
 
 .title h1{
   font-weight: 700;
   font-size: 24px;
-
-  @media screen and (max-width: 500px) {
-    margin-bottom: 12px;
-  }
 }
 
 .title label{
