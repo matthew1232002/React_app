@@ -1,30 +1,20 @@
-import React, { useEffect, MouseEvent } from 'react';
+import React from 'react';
 import css from './card.module.scss';
-import useComponentVisible from '~/hooks/useComponentVisible';
 import { CardProps } from '~/pages/annotations/types';
 import { useMediaQuery } from 'react-responsive'
+import 'react-popper-tooltip/dist/styles.css';
+import { BIG_CARD, SMALL_CARD } from '~/pages/annotations/constants';
 
 
-const Card: React.FC<CardProps> = ({children, setIsShow, styles, id}) => {
-  const { ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(false);
+const Card: React.FC<CardProps> = ({children, styles, id, triggerRef}) => {
   const isSmallScreen = useMediaQuery({ query: '(max-width: 500px)' })
-  const cardWidth = isSmallScreen ? 180 : 316
-
-  useEffect(() => {
-    if (setIsShow) {
-      setIsShow(isComponentVisible);
-    }
-
-  },[isComponentVisible])
-
-  const onClickHandler = (e: MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-    setIsComponentVisible((prevState) => !prevState)
-  }
+  const cardWidth = isSmallScreen ? SMALL_CARD : BIG_CARD
 
   return (
-    <div className={css.wrapper} style={{ ...styles, width: cardWidth }}>
-      <div ref={ref} className={css.dot} onClick={onClickHandler}>{id}</div>
+    <div className={css.wrapper} style={{ ...styles, width: cardWidth}}>
+      <div ref={triggerRef} className={css.dot} onClick={(e) => e.stopPropagation()}>
+        {id}
+      </div>
       {children}
     </div>
   );

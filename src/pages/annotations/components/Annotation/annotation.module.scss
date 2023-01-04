@@ -4,22 +4,6 @@
   align-items: center;
   display: flex;
   padding: 12px;
-  border-radius: 4px;
-  border: 1px solid #EFEFF0;
-  background: $white;
-}
-
-.annotation:after {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  margin-left: -10px;
-  width: 0;
-  height: 0;
-  border-left: solid 10px transparent;
-  border-right: solid 10px transparent;
-  border-bottom: solid 10px $white;
 }
 
 .initials {
@@ -37,11 +21,7 @@
 }
 
 .text {
-  overflow: hidden;
-  width: 100%;
   margin-left: 8px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   color: #4A4A4A;
   font-size: 14px;
 }
@@ -52,13 +32,12 @@
 }
 
 .text div {
+  gap: 15px;
   justify-content: space-between;
   flex: 1;
   display: flex;
 }
 
 .text p {
-  width: 95px;
-
   font-weight: 700;
 }

@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import * as React from 'react';
 
 export interface CreateAnnotation {
   author: string;
@@ -32,8 +33,8 @@ export interface FormProps {
 export interface CardProps {
   children: ReactNode;
   styles: { [key: string]: string; }
-  setIsShow?: (state: boolean) => void
-  id: number;
+  triggerRef?: React.Dispatch<React.SetStateAction<HTMLElement | null>>
+  id?: number;
 }
 
 export interface AnnotationProps {

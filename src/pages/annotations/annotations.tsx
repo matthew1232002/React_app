@@ -8,6 +8,7 @@ import { AnnotationResponse } from '~/pages/annotations/types';
 import Form from '~/pages/annotations/components/Form/Form';
 import Annotation from '~/pages/annotations/components/Annotation/Annotation';
 import { useMediaQuery } from 'react-responsive';
+import { DOT_SIZE } from '~/pages/annotations/constants';
 
 export const Annotations: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<File>();
@@ -43,8 +44,8 @@ export const Annotations: React.FC = () => {
 
   const handleAddAnnotation = (event: BaseSyntheticEvent<any>) => {
     event.stopPropagation()
-    setAnchorEl({ top: event.nativeEvent.layerY, left: event.nativeEvent.layerX })
-    setIsFormOpen(true)
+    setAnchorEl({ top: event.nativeEvent.layerY, left: event.nativeEvent.layerX})
+    setIsFormOpen((prevState) => !prevState)
   };
 
   return (
@@ -70,7 +71,7 @@ export const Annotations: React.FC = () => {
 
             {data.map((annotation: AnnotationResponse) => {
               const left = Math.round(annotation.pos.x * containerEl.width - cardWidth / 2) + 'px'
-              const top = Math.round(annotation.pos.y * containerEl.height) + 'px'
+              const top = Math.round(annotation.pos.y * containerEl.height) - DOT_SIZE / 2 + 'px'
               return (
                 <Annotation key={annotation.id} top={top} left={left} annotation={annotation} />
             )
