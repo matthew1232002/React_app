@@ -4,22 +4,8 @@
   position: relative;
   border-radius: 4px;
   padding: 16px 24px;
-  background: $white;
   color: #4A4A4A;
   pointer-events: all;
-}
-
-.form:after {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  margin-left: -10px;
-  width: 0;
-  height: 0;
-  border-left: solid 10px transparent;
-  border-right: solid 10px transparent;
-  border-bottom: solid 10px $white;
 }
 
 .form div{
