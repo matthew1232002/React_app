@@ -1,12 +1,11 @@
 import { addDays, chooseRandomly, formatDate, range } from '~/utils';
+import { ColorsType } from '~/types';
 
 const baseDate = new Date('2022-01-01');
 
-// TODO could we have more strict type here?
-const colors = ['red', 'green', 'blue'];
+const colors: ColorsType[] = [ColorsType.red, ColorsType.green, ColorsType.blue];
 
-// TODO could we make this range function infer the type, so we don't get any here?
-export const items: Item[] = range(40, (index) => ({
+export const items = range(40, (index) => ({
   date: formatDate(addDays(baseDate, index)),
   color: chooseRandomly(colors),
 }));
@@ -17,23 +16,13 @@ export const dataSample = {
   color: 'red',
 };
 
-// TODO could we use inferred items type here?
-export interface Item {
-  date: string;
-  // TODO could we use stronger color type here?
-  color: string;
-}
-
 export interface Range {
   start: string;
   end: string;
-  // TODO could we use stronger color type here?
-  color: string;
+  color: ColorsType;
 }
 
-
-// TODO could we type this stronger, so autocomplete by key works?
-export const colorToClassName: Record<string, string> = {
+export const colorToClassName: Record<ColorsType, string> = {
   red: 'bg-red-300 text-red-900',
   green: 'bg-green-300 text-green-900',
   blue: 'bg-blue-300 text-blue-900',

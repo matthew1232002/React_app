@@ -1,0 +1,20 @@
+@import "src/pages/annotations/variables";
+
+.form{
+  position: relative;
+  border-radius: 4px;
+  padding: 16px 24px;
+  color: #4A4A4A;
+  pointer-events: all;
+}
+
+.form div{
+  display: flex;
+  border-bottom: 2px solid #9398A2;
+}
+
+.form input {
+  width: 100%;
+  border: 0;
+  outline: 0
+}

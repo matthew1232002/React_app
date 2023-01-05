@@ -1,0 +1,54 @@
+@import "variables";
+.main {
+  justify-content: center;
+  display: flex;
+  min-height: 100vh;
+  background: $black;
+  color: $white;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+}
+.wrapper {
+  flex-direction: column;
+  flex: 1;
+  display: flex;
+  padding: 0 30px;
+  max-width: 1030px;
+}
+
+.title {
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  display: flex;
+  margin: 32px 0;
+}
+
+.title h1{
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.title label{
+  border-radius: 4px;
+  padding: 9px 24px;
+  background: #BEBEBE;
+  cursor: pointer;
+  font-weight: 600;
+  color: $black;
+  line-height: 22px;
+}
+
+.image {
+  flex: 1;
+  justify-content: center;
+  display: flex;
+  margin-bottom: 40px;
+  background-color: #2A2A2A;
+}
+
+.imageContainer{
+  position: relative;
+  display: flex;
+  cursor: grab;
+}

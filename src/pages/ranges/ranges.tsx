@@ -1,16 +1,25 @@
 import clsx from 'clsx';
 import untypedItems from './items.json';
 import untypedRanges from './ranges.json';
-import { colorToClassName, dataSample, Item, Range } from './utils';
+import { colorToClassName, dataSample, Range } from './utils';
+import { Item } from '~/types';
 
 const items = untypedItems as Item[];
 const ranges = untypedRanges as Range[];
 
 const transform = (items: Item[]) => {
-  // TODO implement
+  const transformedRange: Range[] = [];
+  let startedItem = items[0];
 
-  return ranges;
-};
+  for (let i = 0; i < items.length; i ++) {
+    if (i !== items.length -1 && items[i].color !== items[i+1].color) {
+      transformedRange.push({color: items[i].color, start: startedItem.date, end: items[i].date})
+      startedItem = items[i+1];
+    } else if (i === items.length - 1)  transformedRange.push({color: items[i].color, start: startedItem.date, end: items[i].date})
+  }
+
+  return transformedRange;
+}
 
 const RangesView = ({ ranges }: { ranges: Range[] }) => (
   <ul className="space-y-4">

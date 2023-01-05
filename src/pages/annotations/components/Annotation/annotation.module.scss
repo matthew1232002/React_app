@@ -1,0 +1,50 @@
+@import "src/pages/annotations/variables";
+.annotation {
+  position: relative;
+  align-items: center;
+  display: flex;
+  padding: 12px;
+  width: 40vw;
+
+  @media screen and (max-width: 500px) {
+    width: 60vw;
+  }
+}
+
+.initials {
+  flex: 0 0 32px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  background-color: #DB7474;
+  font-size: 14px;
+  color: #FDD5D5;
+  line-height: 16px;
+}
+
+.text {
+  flex: 1;
+  margin-left: 8px;
+  color: #4A4A4A;
+  font-size: 14px;
+}
+
+.text img{
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.text div {
+  gap: 15px;
+  justify-content: space-between;
+  flex: 1;
+  display: flex;
+  white-space: nowrap;
+}
+
+.text p {
+  font-weight: 700;
+}

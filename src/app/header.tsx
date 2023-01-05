@@ -21,7 +21,7 @@ const NavItem = (props: LinkProps) => {
 };
 
 export const Header = () => (
-  <header className="sticky top-0 w-full">
+  <header className="sticky top-0 w-full z-50">
     <nav className="bg-gray-600 shadow-lg">
       <ul className="flex items-center">
         <NavItem to="/">Home</NavItem>
@@ -30,6 +30,7 @@ export const Header = () => (
         <NavItem to="/optimize-1">Optimize 1</NavItem>
         <NavItem to="/optimize-2">Optimize 2</NavItem>
         <NavItem to="/ranges">Ranges</NavItem>
+        <NavItem to="/annotations">Annotations</NavItem>
       </ul>
     </nav>
   </header>
