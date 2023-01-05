@@ -1,14 +1,12 @@
 import React, { useEffect, useState, ChangeEvent, BaseSyntheticEvent } from 'react';
 import css from './annotations.module.scss';
 import defaultImage from '~/assets/images/default.png'
-import plusIcon from '~/assets/images/plus_icon.svg'
-import mouseIcon from '~/assets/images/mouse_icon.svg'
 import { useAnnotations } from '~/pages/annotations/hooks/useAnnotations';
 import { AnnotationResponse } from '~/pages/annotations/types';
 import Form from '~/pages/annotations/components/Form/Form';
 import Annotation from '~/pages/annotations/components/Annotation/Annotation';
-import { useMediaQuery } from 'react-responsive';
-import { BIG_CARD, DOT_SIZE, SMALL_CARD } from '~/pages/annotations/constants';
+import { DOT_SIZE } from '~/pages/annotations/constants';
+import Footer from '~/app/footer';
 
 export const Annotations: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<File>();
@@ -16,8 +14,6 @@ export const Annotations: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<{top: number, left: number}>({top: 0, left: 0});
   const [containerEl, setContainerEl] = useState<{width: number, height: number}>({width: 0, height: 0});
   const {fetch, data} = useAnnotations();
-  const isSmallScreen = useMediaQuery({ query: '(max-width: 500px)' })
-  const cardWidth = isSmallScreen ? SMALL_CARD : BIG_CARD
 
   const calculateContainerCord = () => {
       const elem: HTMLElement =  document.getElementById('annotations-container')!;
@@ -80,10 +76,7 @@ export const Annotations: React.FC = () => {
             {isFormOpen && <Form anchorEl={anchorEl} containerEl={containerEl} setIsFormOpen={setIsFormOpen}/>}
           </div>
         </div>
-
-        <footer className={css.instructions}>
-          To leave a comment, mouseover <img alt='icon' src={plusIcon}/> on an image and click the left mouse button <img alt='icon' src={mouseIcon}/>
-        </footer>
+        <Footer />
       </div>
     </div>
   );
